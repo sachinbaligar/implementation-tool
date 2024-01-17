@@ -1,0 +1,61 @@
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteBase /virabhresearch/
+
+#     # Redirect requests to the masked live link
+#     RewriteCond %{QUERY_STRING} ^vid=([0-9]+)&pid=([0-9]+)&cnt=([a-zA-Z]+)$
+#     RewriteRule ^virabhresearch$/?vid=%1&pid=%2&cnt=%3 [L]
+
+#     # Redirect requests to the masked test link
+#     RewriteRule ^virabhresearch(.*)$/?vid=&pid=&cnt=&livelink=$1 [L,QSA]
+# </IfModule>
+
+
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteBase /
+
+#     # Redirect requests to the masked live link
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteCond %{QUERY_STRING} ^vid=([0-9]+)&pid=([0-9]+)&cnt=([a-zA-Z]+)$
+#     RewriteRule ^virabhresearch/?$ /virabhresearch/?vid=%1&pid=%2&cnt=%3 [L]
+
+#     # Redirect requests to the test link
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteCond %{REQUEST_FILENAME} !-d
+#     RewriteRule ^virabhresearch/(.*)$ /virabhresearch/?vid=&pid=&cnt=&testlink=$1 [L,QSA]
+# </IfModule>
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteBase /
+
+#     # Redirect requests to the masked live link
+#     # RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteCond %{LiveLink} !-d
+#     RewriteCond %{QUERY_STRING} ^vid=([0-9]+)&pid=([0-9]+)&cnt=([a-zA-Z]+)$
+#     RewriteRule ^virabhresearch/?$ /redirect.php?vid=%1&pid=%2&cnt=%3 [L]
+
+#     # Redirect requests to the test link
+#     # RewriteCond %{LiveLink} !-f
+#     RewriteCond %{testLink} !-d
+#     RewriteRule ^virabhresearch/(.*)$ /redirect.php?vid=&pid=&cnt=&testlink=$1 [L,QSA]
+# </IfModule>
+
+
+
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
+# RewriteRule ^youtube/$ /redirect.php [QSA,L]
+# </IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Rewrite URL for live link
+    RewriteRule ^youtube/([^/]+)/([^/]+)/([^/]+)/?$vid=$1&pid=$2&cnt=$3 [L]
+
+    # Other rules go here if needed
+
+</IfModule>
