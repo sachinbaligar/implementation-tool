@@ -1,6 +1,6 @@
 <?php
 ob_start();
-$action = $_GET['action'];
+$action = $_GET['action13'];
 include 'admin_class.php';
 $crud = new Action();
 
